@@ -14,13 +14,19 @@ struct Node * insertatindex(struct Node *,int index);
 struct Node * insertatdata(struct Node *head,int data);
 struct Node * deleteatend(struct Node *);
 struct Node * deleteatbegin(struct Node * head);
+struct Node * deleteatvalue(struct Node * head, int value);
 struct Node * reverse(struct Node * head);
+int findlength(struct Node * head);
+struct Node * deleteatindex(struct Node * head);
+void search(struct Node * head,int key);
+
 int main(){
     struct Node * head;
     int index,com;
    while(com!=-1){
     printf("Enter Commands :\n1)To create head\n2)To insert at being\n3)To insert at end\n4)To insert at index\n");
-    printf("5)To delete at end\n6) To delete at start\n7)To reverse linked list\n-1 to exit\n");
+    printf("5)To delete at end\n6) To delete at start\n7)To reverse linked list\n");
+    printf("8)To find length of linked list\n9)To delete at index\n10)To seach an element-1 to exit\n");
     scanf("%d",&com);
      
     if(com==1){
@@ -63,6 +69,20 @@ int main(){
     printf("After reversing the linked list is\n");
     display(head);
    }
+   else if(com==8){
+       printf("The length of linked list is %d\n",findlength(head));
+   }
+   else if(com==9){
+       head=deleteatindex(head);
+       printf("After deleting the linked list is\n");
+       display(head);
+   }
+   else if(com==10){
+       int key;
+       printf("Enter element you want to search\n");
+       scanf("%d",&key);
+       search(head,key);
+   }
    
    else if(com==-1) break;
    else{
@@ -71,8 +91,23 @@ int main(){
   
     
 }
-
 }
+void search(struct Node * head,int key){
+    struct Node* ptr;
+    ptr=head;
+    int count=0;
+    while(ptr->data==key && ptr->next != NULL){
+       ptr=ptr->next;
+       count++;
+    }
+    if(ptr->data==key){
+       printf("The key %d is at index %d\n",key,count);   
+    }
+    else if(ptr==NULL){
+        printf("The key %d was not found",key);
+    }
+}
+
 struct Node * createlinkedlist(struct Node * head){
     int data;
     head=(struct Node *)malloc(sizeof(struct Node));
@@ -89,6 +124,16 @@ void display(struct Node * head){
        printf("%d\n",ptr->data);
        ptr=ptr->next;
     }
+}
+int findlength(struct Node * head){
+    struct Node* ptr;
+    ptr=head;
+    int count=0;
+    while(ptr != NULL){
+       ptr=ptr->next;
+       count++;
+    }
+    return count;
 }
 struct Node * insertatbegin(struct Node *head){
     struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));

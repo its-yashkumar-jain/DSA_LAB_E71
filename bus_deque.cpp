@@ -57,13 +57,13 @@ void createdequeue(struct Dequeue * deq){
 }
 int getrear(struct Dequeue * deq){
      cout<<"The value of rear is : "<<deq->rear<<endl;
-     cout<<"The value at rear is : "<<(deq->dptr)[deq->front];
-     return (deq->dptr)[deq->front];
+     cout<<"The value at rear is : "<<(deq->dptr)[deq->rear];
+     return (deq->dptr)[deq->rear];
 }
 int getfront(struct Dequeue * deq){
      cout<<"The value of front is : "<<deq->front<<endl;
-     cout<<"The value at front is : "<<(deq->dptr)[deq->rear]<<endl;
-     return (deq->dptr)[deq->rear];
+     cout<<"The value at front is : "<<(deq->dptr)[deq->front]<<endl;
+     return (deq->dptr)[deq->front];
 }
 int isoverflow(struct Dequeue * deq){
     if((deq->front==0 && deq->rear==deq->capacity-1) || deq->front==deq->rear+1){
